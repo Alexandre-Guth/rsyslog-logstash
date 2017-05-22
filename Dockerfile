@@ -4,9 +4,11 @@ RUN apk add --update rsyslog \
   && rm -rf /var/cache/apk/*
   
 ADD rsyslog.conf /etc/rsyslog.conf
+COPY entrypoint.sh /entrypoint.sh
 
 EXPOSE 514 514/udp
 
 VOLUME [ "/var/log", "/etc/rsyslog.d" ]
 
-ENTRYPOINT [ "rsyslogd", "-n" ]
+ENTRYPOINT ["/entrypoint.sh"]
+CMD ["-n"]
