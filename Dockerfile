@@ -4,7 +4,8 @@ RUN apk add --update rsyslog \
   && rm -rf /var/cache/apk/*
   
 ADD rsyslog.conf /etc/rsyslog.conf
-COPY entrypoint.sh /entrypoint.sh
+ADD entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
 EXPOSE 514 514/udp
 
